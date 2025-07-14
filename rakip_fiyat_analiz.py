@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import re
+from tabulate import tabulate
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
@@ -65,6 +66,22 @@ for book_link in all_book_links:
     detail = get_book_detail(driver, book_link)
     product_details.append(detail)
     print(detail)
+
+sample_details = product_details[:5]
+
+table = []
+for detail in sample_details:
+    table.append([
+        detail["name"],
+        detail["price"],
+        detail["star"],
+        detail["product_info"].get("UPC", ""),
+        detail["product_info"].get("Availability", "")
+    ])
+
+headers = ["Name", "Price", "Star", "UPC", "Availability"]
+print("\nSample books table:\n")
+print(tabulate(table, headers, tablefmt="github"))
 
 driver.quit()
 
