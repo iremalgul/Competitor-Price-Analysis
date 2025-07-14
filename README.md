@@ -35,9 +35,42 @@ pip install selenium beautifulsoup4
 - `get_book_links_from_category(driver, category_url)`: Returns all book detail links from a category page.
 - `get_book_detail(driver, book_url)`: Extracts and returns details of a book from its detail page.
 
+## Sample Output
+
+Below is an example of the output you will see after running the script:
+<>
+![Sample Output](./sample_output.png)
+
 ## Notes
 - The script is designed for educational purposes and works with the demo site books.toscrape.com.
 - Make sure your ChromeDriver version matches your installed Chrome browser version.
 
 ---
 Feel free to modify or extend the script for your own use cases! 
+
+
+
+
+
+The following code prints a sample of the scraped books in a table format:
+
+```python
+from tabulate import tabulate
+
+sample_details = product_details[:5]
+
+table = []
+for detail in sample_details:
+    table.append([
+        detail["name"],
+        detail["price"],
+        detail["star"],
+        detail["product_info"].get("UPC", ""),
+        detail["product_info"].get("Availability", "")
+    ])
+
+headers = ["Name", "Price", "Star", "UPC", "Availability"]
+print("\nSample books table:\n")
+print(tabulate(table, headers, tablefmt="github"))
+```
+``` 
