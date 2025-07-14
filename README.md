@@ -48,29 +48,3 @@ Below is an example of the output you will see after running the script:
 ---
 Feel free to modify or extend the script for your own use cases! 
 
-
-
-
-
-The following code prints a sample of the scraped books in a table format:
-
-```python
-from tabulate import tabulate
-
-sample_details = product_details[:5]
-
-table = []
-for detail in sample_details:
-    table.append([
-        detail["name"],
-        detail["price"],
-        detail["star"],
-        detail["product_info"].get("UPC", ""),
-        detail["product_info"].get("Availability", "")
-    ])
-
-headers = ["Name", "Price", "Star", "UPC", "Availability"]
-print("\nSample books table:\n")
-print(tabulate(table, headers, tablefmt="github"))
-```
-``` 
